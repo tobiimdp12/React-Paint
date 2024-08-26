@@ -6,7 +6,7 @@ function App() {
   const [{ canvasRef, ...states }, {...handleFn }] = usePaintCustomHook();
   return (
     <div className='flex h-screen'>
-      <SideToolBar {...handleFn} {...states} />
+      <SideToolBar {...handleFn} {...states}  canvasRef={canvasRef} />
       <CanvasPreview
         canvasRef={canvasRef}
         eraser={states.isEraser}

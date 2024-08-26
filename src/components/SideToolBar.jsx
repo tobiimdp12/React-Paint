@@ -6,8 +6,18 @@ export default function SideToolBar({
   handleBrush,
   handleEraser,
   isEraser,
-  handleThickness
+  handleThickness,
+  canvasRef
 }) {
+
+  const handleDownload = () => {
+    const canvas = canvasRef.current;
+    const image = canvas.toDataURL('image/jpg'); // Convierte el canvas a una URL de datos en formato PNG
+    const link = document.createElement('a');
+    link.href = image;
+    link.download = 'canvas-image.jpg'; // Nombre del archivo a descargar
+    link.click(); // Simula un clic en el enlace para iniciar la descarga
+  };
 
   return (
     <aside className='basis-52 p-6 h-full  border-r-2 bg-slate-500 animate__animated animate__slideInDown rounded border-stone-700'>
@@ -57,6 +67,10 @@ export default function SideToolBar({
             className="animate__animated animate__slideInLeft w-full max-w-xs appearance-none cursor-pointer bg-slate-800 rounded-lg"
           ></input>
         </div>
+      </div>
+
+      <div className='mt-7'>
+        <button onClick={handleDownload}  className="marker:animate__animated animate__slideInLeft px-4 py-2 bg-slate-700 hover:bg-slate-600 font-semibold rounded-lg shadow-md text-zinc-50 hover:bg-grey-600 focus:outline-none focus:ring-2 focus:ring-slate-50 focus:ring-opacity-50 transition duration-200 ">Download as JPG</button>
       </div>
     </aside>
   );
